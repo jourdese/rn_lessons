@@ -15,18 +15,9 @@ const TopicButton = ({ onPress, title, style, textStyle, children }) => {
 };
 export default TopicButton
 const styles = StyleSheet.create({
-    button: {
-        borderWidth: 2,
-        borderColor: '#000', // black border, change if needed
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-        alignItems: 'center',
-        marginTop: 20,
-    },
     buttonText: {
-        color: '#000',
+        color: 'white', // White text
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: 'bold', // Bold text
     },
 })
