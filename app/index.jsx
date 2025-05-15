@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {useRouter} from 'expo-router';
 import ScreenWrapper from '@/components/ScreenWrapper';
 import {wp} from "../helpers/common";
@@ -7,7 +7,21 @@ import TopicButton from "../components/TopicButton";
 
 const Index = () => {
     const router = useRouter();
-
+    const [modalIsVisible, setModalIsVisible] = useState(false);
+    const [courseGoals, setCourseGoals] = useState([]);
+    function startAddGoalHandler() {
+        setModalIsVisible(true);
+    }
+    function addGoalHandler(enteredGoalText) {
+        setCourseGoals((currentCourseGoals) => [
+            ...currentCourseGoals,
+            { text: enteredGoalText, id: Math.random().toString() },
+        ]);
+        endAddGoalHandler();
+    }
+    function endAddGoalHandler() {
+        setModalIsVisible(false);
+    }
     return (
         <ScreenWrapper bg="white">
             <View style={styles.container}>
@@ -21,6 +35,11 @@ const Index = () => {
                     style={styles.button}
                     onPress={() => router.push('./viewnotes')}
                 />
+                <TopicButton
+                    title="02-15-finished"
+                    style={styles.button}
+                    onPress={() => router.push('./b15finished_app')}
+                />
             </View>
         </ScreenWrapper>
     );
@@ -29,7 +48,14 @@ const Index = () => {
 export default Index;
 
 const styles = StyleSheet.create({
-
+    appContainer: {
+        flex: 1,
+        paddingTop: 50,
+        paddingHorizontal: 16,
+    },
+    goalsContainer: {
+        flex: 5,
+    },
     container: {
         flex: 1,
         gap: 1,
